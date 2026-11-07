@@ -54,7 +54,7 @@ export default class Graphics {
             const img = new Image();
             img.src = url;
 
-            img.onload = (e) => {
+            img.onload = () => {
                 const w = img.naturalWidth;
                 const h = img.naturalHeight;
 
