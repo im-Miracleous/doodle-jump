@@ -60,6 +60,14 @@ export default class Player {
         }
 
         this.position.x += this.velocity.x;
+
+        const canvasWidth = CONFIG.CANVAS.WIDTH;
+
+        if (this.position.x > canvasWidth) {
+            this.position.x = 0;
+        } else if (this.position.x + this.width < 0) {
+            this.position.x = canvasWidth;
+        }
     }
 
     draw(ctx) {
