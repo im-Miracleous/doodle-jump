@@ -1,4 +1,4 @@
-import Graphics from '../lib/utils/graphics.js';
+import Graphics, { createAsset } from '../lib/utils/graphics.js';
 
 export default class Background {
     constructor(gfx, width, height) {
@@ -9,8 +9,7 @@ export default class Background {
     }
 
     async load() {
-        const graphics = new Graphics(this.gfx.canvas);
-        const asset = await graphics.createAsset(
+        const asset = await createAsset(
             new URL('../../assets/doodlejumpbg.png', import.meta.url)
         );
 
