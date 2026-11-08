@@ -1,5 +1,6 @@
 import { createAsset } from '../lib/utils/graphics.js';
 import Vector2 from '../lib/graphics/primitives/Vector2.js';
+import { CONFIG } from '../config.js';
 
 export default class Player {
     constructor(canvasWidth, canvasHeight) {
@@ -47,9 +48,18 @@ export default class Player {
         }
     }
 
-    update(dt) {
+    update(dt, input) {
+        if (input.direction === "right" && input.keys.right) {
+            this.velocity.x = CONFIG.PHYSICS.MOVE_SPEED;
+            this.setDirection("right");
+        } else if (input.direction === "left" && input.keys.left) {
+            this.velocity.x = -CONFIG.PHYSICS.MOVE_SPEED;
+            this.setDirection("left");
+        } else {
+            this.velocity.x = 0;
+        }
+
         this.position.x += this.velocity.x;
-        this.position.y += this.velocity.y;
     }
 
     draw(ctx) {
