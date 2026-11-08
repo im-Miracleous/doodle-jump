@@ -1,4 +1,4 @@
-export function Vector2(x, y) {
+export default function Vector2(x, y) {
     return {
         x: x,
         y: y,

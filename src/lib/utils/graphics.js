@@ -48,34 +48,34 @@ export default class Graphics {
             Math.round(h / 2)
         );
     }
+}
 
-    async createAsset(url) {
-        return new Promise((resolve, reject) => {
-            const img = new Image();
-            img.src = url;
+export async function createAsset(url) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = url;
 
-            img.onload = () => {
-                const w = img.naturalWidth;
-                const h = img.naturalHeight;
+        img.onload = () => {
+            const w = img.naturalWidth;
+            const h = img.naturalHeight;
 
-                const tempCanvas = document.createElement('canvas');
-                tempCanvas.width = w;
-                tempCanvas.height = h;
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = w;
+            tempCanvas.height = h;
 
-                const ctx = tempCanvas.getContext('2d');
-                ctx.drawImage(img, 0, 0);
-                const asset = {
-                    width: w,
-                    height: h,
-                    data: ctx.getImageData(0, 0, w, h).data
-                };
+            const ctx = tempCanvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            const asset = {
+                width: w,
+                height: h,
+                data: ctx.getImageData(0, 0, w, h).data
+            };
 
-                resolve(asset);
-            }
+            resolve(asset);
+        }
 
-            img.onerror = (e) => {
-                reject(new Error("Failed to load asset."))
-            }
-        });
-    }
+        img.onerror = (e) => {
+            reject(new Error("Failed to load asset."))
+        }
+    });
 }
