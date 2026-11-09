@@ -59,7 +59,7 @@ export default class Player {
             this.velocity.x = 0;
         }
 
-        this.position.x += this.velocity.x;
+        this.position.x += this.velocity.x * dt;
 
         const canvasWidth = CONFIG.CANVAS.WIDTH;
 

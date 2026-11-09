@@ -7,7 +7,7 @@ export const CONFIG = {
     PHYSICS: {
         GRAVITY: 0.4,
         JUMP_FORCE: -8.5,
-        MOVE_SPEED: 4
+        MOVE_SPEED: 350
     },
 
     PLATFORM: {
