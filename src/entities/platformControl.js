@@ -23,6 +23,17 @@ export default class PlatformControl {
             this.platforms.push(new Platform(x, y));
         }
     }
+    scroll(dy) {
+        for (let p of this.platforms) {
+            p.position.y += dy;
+        }
+
+        while (this.platforms.length > 0 && this.platforms[0].position.y >= this.canvasHeight) {
+            this.platforms.shift();
+            const x = Math.floor(Math.random() * (this.canvasWidth - CONFIG.PLATFORM.WIDTH));
+            this.platforms.push(new Platform(x, -CONFIG.PLATFORM.HEIGHT));
+        }
+    }
 
     draw(gfx) {
         for (let i = 0; i < this.platforms.length; i++) {

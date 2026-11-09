@@ -28,11 +28,19 @@ export default class Game {
     update(dt) {
         this.player.update(dt, this.input);
 
+        const threshold = this.height / 2;
+
+        if (this.player.position.y < threshold && this.player.velocity.y < 0) {
+            this.platformControl.scroll(-this.player.velocity.y);
+            this.player.position.y = threshold;
+        }
+
         if (this.player.velocity.y > 0) {
             const feet = this.player.position.y + this.player.height;
 
             for (let p of this.platformControl.platforms) {
                 if (detectCollision(this.player, p) && feet <= p.position.y + p.height) {
+                    this.player.position.y = p.position.y - this.player.height;
                     this.player.jump();
                     break;
                 };
