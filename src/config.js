@@ -1,4 +1,8 @@
 export const CONFIG = {
+    GAME: {
+        FRAME_RATE: 60
+    },
+
     CANVAS: {
         WIDTH: 360,
         HEIGHT: 576
@@ -6,8 +10,8 @@ export const CONFIG = {
 
     PHYSICS: {
         GRAVITY: 0.4,
-        JUMP_FORCE: -8.5,
-        MOVE_SPEED: 4
+        JUMP_FORCE: -10,
+        MOVE_SPEED: 8
     },
 
     PLATFORM: {

@@ -1,6 +1,8 @@
 import Background from '../entities/Background.js';
+import PlatformControl from '../entities/PlatformControl.js';
 import Player from '../entities/player.js';
 import InputHandler from './inputHandler.js';
+import { detectCollision } from './physics.js';
 import { CONFIG } from '../config.js';
 
 export default class Game {
@@ -12,27 +14,43 @@ export default class Game {
         this.input = new InputHandler();
 
         this.background = new Background(gfx, this.width, this.height);
+        this.platformControl = new PlatformControl(this.width, this.height);
         this.player = new Player(this.width, this.height);
     }
 
     async init() {
         await this.background.load();
+        await this.platformControl.init();
         await this.player.init();
         console.log("Initializing game...");
     }
 
     update(dt) {
-        this.player.update(dt, this.input); 
+        this.player.update(dt, this.input);
+
+        if (this.player.velocity.y > 0) {
+            const feet = this.player.position.y + this.player.height;
+
+            for (let p of this.platformControl.platforms) {
+                if (detectCollision(this.player, p) && feet <= p.position.y + p.height) {
+                    this.player.jump();
+                    break;
+                };
+            }
+        }
     }
 
     render() {
         this.gfx.refresh();
 
-        // Render imageData
-        this.gfx.render();
-
         // Render background
         this.background.render();
+
+        // Render platform
+        this.platformControl.draw(this.gfx);
+
+        // Render imageData
+        this.gfx.render();
 
         // Render player
         this.player.draw(this.gfx.ctx);

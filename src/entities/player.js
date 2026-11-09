@@ -12,7 +12,7 @@ export default class Player {
             canvasHeight * 7 / 8 - this.height
         );
 
-        this.velocity = new Vector2(0, 0);
+        this.velocity = new Vector2(0, CONFIG.PHYSICS.JUMP_FORCE);
 
         // Doodler sprite
         this.spriteRight = null;
@@ -42,6 +42,10 @@ export default class Player {
         return { img, width: asset.width, height: asset.height };
     }
 
+    jump() {
+        this.velocity.y = CONFIG.PHYSICS.JUMP_FORCE;
+    }
+
     setDirection(dir) {
         if (dir === "left" || dir === "right") {
             this.facing = dir;
@@ -59,10 +63,14 @@ export default class Player {
             this.velocity.x = 0;
         }
 
-        this.position.x += this.velocity.x;
+        const tick = dt * CONFIG.GAME.FRAME_RATE;
+
+        this.velocity.y += CONFIG.PHYSICS.GRAVITY * tick;
+
+        this.position.x += this.velocity.x * tick;
+        this.position.y += this.velocity.y * tick;
 
         const canvasWidth = CONFIG.CANVAS.WIDTH;
-
         if (this.position.x > canvasWidth) {
             this.position.x = 0;
         } else if (this.position.x + this.width < 0) {
