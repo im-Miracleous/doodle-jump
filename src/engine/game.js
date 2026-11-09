@@ -2,6 +2,7 @@ import Background from '../entities/Background.js';
 import PlatformControl from '../entities/PlatformControl.js';
 import Player from '../entities/player.js';
 import InputHandler from './inputHandler.js';
+import { detectCollision } from './physics.js';
 import { CONFIG } from '../config.js';
 
 export default class Game {
@@ -25,7 +26,18 @@ export default class Game {
     }
 
     update(dt) {
-        this.player.update(dt, this.input); 
+        this.player.update(dt, this.input);
+
+        if (this.player.velocity.y > 0) {
+            const feet = this.player.position.y + this.player.height;
+
+            for (let p of this.platformControl.platforms) {
+                if (detectCollision(this.player, p) && feet <= p.position.y + p.height) {
+                    this.player.jump();
+                    break;
+                };
+            }
+        }
     }
 
     render() {

@@ -12,7 +12,7 @@ export default class PlatformControl {
         this.platforms = [];
 
         const start = {
-            x: this.canvasWidth / 2 - CONFIG.CANVAS.WIDTH / 2,
+            x: Math.floor(Math.random() * (this.canvasWidth - CONFIG.PLATFORM.WIDTH)),
             y: this.canvasHeight - 50
         }
         this.platforms.push(new Platform(start.x, start.y));

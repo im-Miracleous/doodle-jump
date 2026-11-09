@@ -76,12 +76,6 @@ export default class Player {
         } else if (this.position.x + this.width < 0) {
             this.position.x = canvasWidth;
         }
-
-        const canvasHeight = CONFIG.CANVAS.HEIGHT;
-        if (this.position.y >= canvasHeight - this.height) {
-            this.position.y = canvasHeight - this.height;
-            this.jump();
-        }
     }
 
     draw(ctx) {
