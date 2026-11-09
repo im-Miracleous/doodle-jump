@@ -12,6 +12,11 @@ export default class GraphicsLib {
         this.canvasHeight = canvas.height;
         this.imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
 
+        this.tempCanvas = document.createElement("canvas");
+        this.tempCanvas.width = this.canvasWidth;
+        this.tempCanvas.height = this.canvasHeight;
+        this.bufferCtx = this.tempCanvas.getContext("2d");
+
         this.dot = new Dot(this);
         this.line = new Line(this);
         this.curve = new Curve(this);
@@ -32,6 +37,7 @@ export default class GraphicsLib {
     }
 
     render() {
-        this.ctx.putImageData(this.imageData, 0, 0);
+        this.bufferCtx.putImageData(this.imageData, 0, 0);
+        this.ctx.drawImage(this.tempCanvas, 0, 0);
     }
 }
