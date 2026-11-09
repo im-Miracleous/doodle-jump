@@ -14,14 +14,14 @@ export default class Line {
                 let y = y1;
                 for (let x = x1; x < x2; x++) {
                     y += dy/Math.abs(dx); // 1/m
-                    this.gfx.dot(Math.round(x), Math.round(y), color);
+                    this.gfx.dot.dot(Math.round(x), Math.round(y), color);
                 }
             } else { // x2 < x1
                 // Ke kiri
                 let y = y1;
                 for (let x = x1; x > x2; x--) {
                     y += dy/Math.abs(dx); // 1/m
-                    this.gfx.dot(Math.round(x), Math.round(y), color);
+                    this.gfx.dot.dot(Math.round(x), Math.round(y), color);
                 }
             }
         } else {
@@ -31,14 +31,14 @@ export default class Line {
                 let x = x1;
                 for (let y = y1; y < y2; y++) {
                     x += dx/Math.abs(dy); // m
-                    this.gfx.dot(Math.round(x), Math.round(y), color);
+                    this.gfx.dot.dot(Math.round(x), Math.round(y), color);
                 }
             } else { // x2 < x1
                 // Ke kiri
                 let x = x1;
                 for (let y = y1; y > y2; y--) {
                     x += dx/Math.abs(dy); // m
-                    this.gfx.dot(Math.round(x), Math.round(y), color);
+                    this.gfx.dot.dot(Math.round(x), Math.round(y), color);
                 }
             }
         }

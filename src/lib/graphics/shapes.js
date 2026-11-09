@@ -27,25 +27,25 @@ export default class Shapes {
                 y = yMax - step;
             }
 
-            this.gfx.dot(x, y, color);
+            this.gfx.dot.dot(x, y, color);
         }
     }
 
     naiveCircle(xc, yc, radius, color) {
         for (let x = xc - radius; x <= xc + radius; x++) {
             let y = yc + Math.sqrt(Math.pow(radius, 2) - Math.pow((x - xc), 2));
-            this.gfx.dot(Math.ceil(x), Math.ceil(y), color);
+            this.gfx.dot.dot(Math.ceil(x), Math.ceil(y), color);
 
             y = yc - Math.sqrt(Math.pow(radius, 2) - Math.pow((x - xc), 2));
-            this.gfx.dot(Math.ceil(x), Math.ceil(y), color);
+            this.gfx.dot.dot(Math.ceil(x), Math.ceil(y), color);
         }
 
         for (let x = xc - radius; x <= xc + radius; x++) {
             let y = yc + Math.sqrt(Math.pow(radius, 2) - Math.pow((x - xc), 2));
-            this.gfx.dot(Math.ceil(y), Math.ceil(x), color);
+            this.gfx.dot.dot(Math.ceil(y), Math.ceil(x), color);
 
             y = yc - Math.sqrt(Math.pow(radius, 2) - Math.pow((x - xc), 2));
-            this.gfx.dot(Math.ceil(y), Math.ceil(x), color);
+            this.gfx.dot.dot(Math.ceil(y), Math.ceil(x), color);
         }
     }
 
@@ -54,7 +54,7 @@ export default class Shapes {
             let x = xc + radius * Math.cos(theta);
             let y = yc + radius * Math.sin(theta);
 
-            this.gfx.dot(Math.round(x), Math.round(y), color);
+            this.gfx.dot.dot(Math.round(x), Math.round(y), color);
         }
     }
 
@@ -63,7 +63,7 @@ export default class Shapes {
             let x = xc + radiusX * Math.cos(theta);
             let y = yc + radiusY * Math.sin(theta);
 
-            this.gfx.dot(Math.round(x), Math.round(y), color);
+            this.gfx.dot.dot(Math.round(x), Math.round(y), color);
         }
     }
 
@@ -72,7 +72,7 @@ export default class Shapes {
             let x = xc + gap * theta * Math.cos(theta);
             let y = yc + gap * theta * Math.sin(theta);
 
-            this.gfx.dot(Math.round(x), Math.round(y), color);
+            this.gfx.dot.dot(Math.round(x), Math.round(y), color);
         }
     }
 
@@ -86,7 +86,7 @@ export default class Shapes {
             let x = xc + radius * Math.cos(n * theta) * Math.cos(theta);
             let y = yc + radius * Math.cos(n * theta) * Math.sin(theta);
 
-            this.gfx.dot(Math.round(x), Math.round(y), color);
+            this.gfx.dot.dot(Math.round(x), Math.round(y), color);
         }
     }
 
@@ -95,7 +95,7 @@ export default class Shapes {
             let x = xc + (radius + radius * Math.sin(theta)) * Math.cos(theta);
             let y = yc + (radius + radius * Math.sin(theta)) * Math.sin(theta);
 
-            this.gfx.dot(Math.round(x), Math.round(y), color);
+            this.gfx.dot.dot(Math.round(x), Math.round(y), color);
         }
     }
 
@@ -105,7 +105,7 @@ export default class Shapes {
             let x = xc + (radius + amplitude * Math.sin(phi)) * Math.cos(theta);
             let y = yc + (radius + amplitude * Math.sin(phi)) * Math.sin(theta);
 
-            this.gfx.dot(Math.round(x), Math.round(y), color);
+            this.gfx.dot.dot(Math.round(x), Math.round(y), color);
 
             phi += spike / radius;
         }
@@ -117,7 +117,7 @@ export default class Shapes {
             let x = xc + (radius * Math.cos(2 * theta) + amplitude * Math.sin(phi)) * Math.cos(theta);
             let y = yc + (radius * Math.cos(2 * theta) + amplitude * Math.sin(phi)) * Math.sin(theta);
 
-            this.gfx.dot(Math.round(x), Math.round(y), color);
+            this.gfx.dot.dot(Math.round(x), Math.round(y), color);
 
             phi += spike / radius;
         }
@@ -125,7 +125,7 @@ export default class Shapes {
 
     polygon(dotArray, color) {
         for (let i = 0; i < dotArray.length; i++) {
-            this.gfx.ddaLine(
+            this.gfx.line.ddaLine(
                 dotArray[i].x,
                 dotArray[i].y,
                 dotArray[(i + 1) % dotArray.length].x,
