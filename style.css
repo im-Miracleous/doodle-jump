@@ -14,6 +14,7 @@ body {
 }
 
 .container {
+    position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     border-radius: 4px;
     overflow: hidden;
@@ -24,4 +25,21 @@ body {
     display: block;
     outline: 1px solid black;
     background-color: #f7ebd3;
+}
+
+#score {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+#message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    background-color: #FFFFFF;
+    line-height: 1.5;
+    transform: translate(-50%, -50%);
+    width: 60%;
 }
